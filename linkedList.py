@@ -79,22 +79,173 @@ class LinkedList:
 	def len_recursive(self, node):
 		if node is None:
 			return 0
-		return 1+ self.len_recursive(node.next)		
+		return 1+ self.len_recursive(node.next)	
+
+	def reverse_iterative(self):
+
+		pre = None
+		cur = self.head
+		while cur:
+			nxt = cur.next
+			cur.next = pre
+			pre = cur 
+			cur = nxt
+		self.head = pre 
+
+	def reverse_recursive(self):
+		def _reverse_recursive(curr, prev):
+			if not curr:
+				return
+			nxt = curr.next
+			curr.next = prev
+			prev = curr
+			curr = nxt
+
+			return _reverse_recursive(curr, prev)
+		self.head= _reverse_recursive(curr = self.head, prev = None)
+
+    
+
+	def merge_sorted(self, llist):
+		p = self.head
+		q = llist.head
+		s = None
+		if not p:
+			return
+		if not q:
+			return
+			
+
+
+		if p and q:
+			if p.data <= q.data:
+				# s.next = p
+				s = p
+				p = s.next
+			else:
+				s.head = q
+				s = q
+				# q = s.head
+			new_head = s
+
+		while p and q:
+			if p.data <= q.data:
+				s.next = p
+				s = p
+				p = s.next
+			else:
+				s.next = q
+				s = q
+				q = s.next
+
+		if not p:
+			s.next = q
+		if not q:
+			s.next = p
+
+		return new_head
+    # program to sort two merged linked lists
+    # def merge_sorted(self, llist):
+    # 	p = self.head
+    # 	q = llist.head
+    # 	s = None
+    # 	if not p:
+    # 		return q
+
+    # 	if not q:
+    # 		return p
+
+    # 	if p and q:
+    # 		if p.data <= q.data:
+    # 			s = p
+    # 			p = p.next
+    # 		else:
+    # 			s = q
+    # 			q= q.next
+    # 		new_head = s
+
+    # 	while p and q:
+    # 		if p.data <= q.data:
+    # 			s.next = p
+    # 			s = p
+    # 			p= s.next
+    # 		else:
+    # 			s.next = q
+    # 			s = q
+    # 			q = s.next
+
+    # 	if not p:
+    # 		s.next = q
+    # 	if not q:
+    # 		s.next = p
+
+    # 	return new_head
+
+
+
+    
+    # Swapping of nodes
+
+    # def swap_nodes(self, key_1, key_2):
+    	
+    # 	if key_1 == key_2:
+    # 		return
+
+    # 	previous_node_1 = None
+    # 	current_node_1 = self.head
+    # 	while current_node_1 and current_node_1.data != key:
+    # 		previous_node_1 = current_node_1
+    # 		current_node_1 = current_node_1.next
+
+    # 	previous_node_2 = None
+    # 	current_node_2 = self.head
+    # 	while current_node_2 and current_node_2.data != key:
+    # 		previous_node_2 = current_node_2
+    # 		current_node_2 = current_node_2.next
+
+    # 	if not current_node_1 and not current_node_2:
+    # 		return 
+
+    # 	if previous_node_1:
+    # 		previous_node_1.next = current_node_2
+    # 	else:
+    # 		self.head = current_node_2
+
+    # 	if previous_node_2:
+    # 		previous_node_2.next = current_node_1
+    # 	else:
+    # 		self.head = current_node_1
+
+    # 	# current_node_1.next , current_node_2.next = current_node_2.next, current_node_1.next
+    
+    def remove_duplicates(self):
+    	previous = None
+    	curr = self.head
+    	dup_values = dic()
+    	while curr:
+    		if curr.data in dup_values:
+    			curr.next = previous.next
+    			curr = None
+    		else:
+    			dup_values [curr.data] = 1
+    			previous = curr
+    		curr = previous.next	
 
 
 	
 
 
 llist = LinkedList()
-print("The length of an empty linked list is:")
-print(llist.len_recursive(llist.head))
-llist.append("A")
-llist.append("B")
-llist.append("C")
-llist.append("D")
-llist.append("E")
-llist.append("D")
-print(llist.len_recursive(llist.head))
-# print("The length of the linked list calculated iteratively after inserting 4 elements is:")
-# print(llist.len_iterative())
-		
+llist.append(1)
+llist.append(6)
+llist.append(1)
+llist.append(4)
+llist.append(2)
+llist.append(2)
+llist.append(4)
+
+print("Original Linked List")
+llist.print_list()
+print("Linked List After Removing Duplicates")
+llist.remove_duplicates()
+llist.print_list()
