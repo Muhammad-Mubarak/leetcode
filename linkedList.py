@@ -1,3 +1,5 @@
+from length_of_linked_list import len_iterative
+
 class Node():
 	def __init__(self, data):
 		self.data = data
@@ -70,21 +72,29 @@ class LinkedList:
 			return
 		prev.next = curr_node.next
 		curr_node = None
-	
 
+
+
+	# number of nodes in linked list recursive approach
+	def len_recursive(self, node):
+		if node is None:
+			return 0
+		return 1+ self.len_recursive(node.next)		
 
 
 	
 
 
 llist = LinkedList()
+print("The length of an empty linked list is:")
+print(llist.len_recursive(llist.head))
 llist.append("A")
 llist.append("B")
 llist.append("C")
-
-llist.delete_node_at_pos(0)
-# llist.delete_node("E")
-# llist.insert_after_node(llist.head.next, "D")
-
-llist.print_list()		
+llist.append("D")
+llist.append("E")
+llist.append("D")
+print(llist.len_recursive(llist.head))
+# print("The length of the linked list calculated iteratively after inserting 4 elements is:")
+# print(llist.len_iterative())
 		
