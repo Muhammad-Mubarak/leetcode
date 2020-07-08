@@ -218,19 +218,22 @@ class LinkedList:
 
     # 	# current_node_1.next , current_node_2.next = current_node_2.next, current_node_1.next
     
-    def remove_duplicates(self):
-    	previous = None
-    	curr = self.head
-    	dup_values = dic()
-    	while curr:
-    		if curr.data in dup_values:
-    			curr.next = previous.next
-    			curr = None
-    		else:
-    			dup_values [curr.data] = 1
-    			previous = curr
-    		curr = previous.next	
+    # def remove_duplicates(self):
+    # 	previous = None
+    # 	curr = self.head
+    # 	dup_values = dic()
+    # 	while curr:
+    # 		if curr.data in dup_values:
+    # 			curr.next = previous.next
+    # 			curr = None
+    # 		else:
+    # 			dup_values [curr.data] = 1
+    # 			previous = curr
+    # 		curr = previous.next	
 
+
+#  s == s[:: -1] is a short method for checking reverse of string in python
+#  given a linked list to check it is pailin drome or not?
 
 	
 
